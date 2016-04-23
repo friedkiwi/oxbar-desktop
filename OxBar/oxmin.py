@@ -10,7 +10,7 @@ import oxdb
 import threading
 import logging
 import config
-
+import time
 
 class FrackMin(object):
     """ Opens the AdminGui window """
@@ -251,6 +251,9 @@ class FrackMin(object):
         value1 = self.builder.get_object('UpdateIn3').get_text().decode('utf-8')
         value2 = self.builder.get_object('UpdateIn4').get_text().decode('utf-8')
         mode = self.builder.get_object('UpdateLbl4').get_text()
+
+        if barcode == '':
+            barcode = 'NOBARCODE-' + str(time.time())
 
         # Input tests, value2 always has valid input when it is hidden:
         if '' in (barcode, input2, value1, value2):
