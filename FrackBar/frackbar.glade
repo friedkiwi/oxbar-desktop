@@ -10,12 +10,13 @@
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">FrackBar Consumption Tracker</property>
-    <property name="copyright" translatable="yes">Created by Rudi Daemen for Hackerspace Frack.
+    <property name="copyright" translatable="yes">Originally created by Rudi Daemen for Hackerspace Frack,
+then modified by Yvan Janssens for Oxford Hackspace.
 
-Special thanks go to Elmer de Looff for helping me 
-out and teaching me how to work with Python</property>
+Special thanks go to Elmer de Looff for helping Rudi
+out and teaching him how to work with Python.</property>
     <property name="comments" translatable="yes">GUI Edition</property>
-    <property name="website">www.frack.nl</property>
+    <property name="website">www.oxhack.org</property>
     <property name="license" translatable="yes">DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
 Version 2, December 2004 
 
@@ -444,7 +445,7 @@ transaction.</property>
           <object class="GtkLabel" id="TopUpAmount">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">€0,00</property>
+            <property name="label" translatable="yes">£0,00</property>
             <attributes>
               <attribute name="weight" value="ultraheavy"/>
               <attribute name="absolute-size" value="50000"/>
@@ -463,7 +464,7 @@ transaction.</property>
             <property name="homogeneous">True</property>
             <child>
               <object class="GtkButton" id="TopUpAdd5">
-                <property name="label" translatable="yes">€5</property>
+                <property name="label" translatable="yes">£5</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -479,7 +480,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd10">
-                <property name="label" translatable="yes">€10</property>
+                <property name="label" translatable="yes">£10</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -495,7 +496,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd20">
-                <property name="label" translatable="yes">€20</property>
+                <property name="label" translatable="yes">£20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -511,7 +512,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd50">
-                <property name="label" translatable="yes">€50</property>
+                <property name="label" translatable="yes">£50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
