@@ -14,11 +14,8 @@ import frackdb
 import frackmin
 import threading
 import logging
+import config
 
-#Constants
-CCPREFIX = 'OXCC'
-ANONMEMCARD = 'OXMEMBER'
-NOTIFYTIME = 3
 
 class KassaGui(object):
   """ Gui Handler class, this handles all GTK Gui I/O and buildup """
@@ -42,7 +39,7 @@ class KassaGui(object):
     self.builder.get_object('KassaGui').show()
     self.builder.get_object('KassaGui').set_title(verstring)
     self.builder.get_object('GuiMode').set_label("Payment in Cash")
-    self.builder.get_object('GuiTotal').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('GuiTotal').set_text( u"%s%.2f" % (config.CURRENCY_SYMBOL, self.amount))
     self.builder.get_object('GuiInvProd').get_buffer().set_text("Product:\n")
     self.builder.get_object('GuiInvPrice').get_buffer().set_text("Price:\n")
     self._Main()
@@ -62,7 +59,7 @@ class KassaGui(object):
     raise SystemExit
 
   # InfoDialog to interact with the end-user in a more obvious way
-  def InfoDialog(self, message, timeout=NOTIFYTIME, error=False):
+  def InfoDialog(self, message, timeout=config.NOTIFYTIME, error=False):
     """ Handles the InfoDialog. Pass the message and the time it should remain
     visible """
     logging.debug("InfoDialog called: message=%r, error=%s", message, error)
@@ -105,16 +102,16 @@ class KassaGui(object):
           u"%s\n" % items[1])
       if self.is_member:
         self.builder.get_object('GuiInvPrice').get_buffer().insert_at_cursor(
-          u"\xa3%.2f\n" % items[2])
+          config.CURRENCY_SYMBOL + u"%.2f\n" % items[2])
         self.amount = self.amount + items[2]
       else:
         self.builder.get_object('GuiInvPrice').get_buffer().insert_at_cursor(
-          u"\xa3%.2f\n" % items[3])
+          config.CURRENCY_SYMBOL + u"%.2f\n" % items[3])
         self.amount = self.amount + items[3]
     if self.is_member:
       self.builder.get_object('GuiInvProd').get_buffer().insert_at_cursor(
           u"\nYou are a member.")
-    self.builder.get_object('GuiTotal').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('GuiTotal').set_text(config.CURRENCY_SYMBOL + u"%.2f" % self.amount)
     self.builder.get_object('GuiInput').set_text("")
 
   def CashMode(self):
@@ -133,10 +130,10 @@ class KassaGui(object):
       self.cred_left = cardinfo['credit']
       self.is_member = cardinfo['member']
       self.cred_id = cardinfo['ID']
-      self.InfoDialog(u"Your card \"%s\" has \xa3%.2f credit left." % (
+      self.InfoDialog(u"Your card \"%s\" has " + config.CURRENCY_SYMBOL + u"%.2f credit left." % (
           self.cred_card, self.cred_left))
       self.builder.get_object('GuiMode').set_label(u"Creditcard: %s\t"
-                   u"Credit: \xa3%.2f" % (self.cred_card, self.cred_left))
+                   u"Credit: " + config.CURRENCY_SYMBOL + u"%.2f" % (self.cred_card, self.cred_left))
     else:
       self.InfoDialog(u"Card \"%s\" is not a valid creditcard.\nPayment mode is"
                       u" set to cash." % barcode, error=True)
@@ -153,13 +150,13 @@ class KassaGui(object):
     if barcode == '':
       self.InfoDialog(u"Please scan a barcode...", error=True)
       return
-    if barcode.startswith(CCPREFIX):
-      if barcode == CCPREFIX:
+    if barcode.startswith(config.CCPREFIX):
+      if barcode == config.CCPREFIX:
         self.CashMode()
         self.InfoDialog(u"Switching to cash mode as requested")
       else:
         self.CardMode(barcode)
-    elif barcode == ANONMEMCARD:
+    elif barcode == config.ANONMEMCARD:
       if self.cred_card:
         self.CashMode()
         self.InfoDialog(u"Switching back to cash mode as requested")
@@ -185,7 +182,7 @@ class KassaGui(object):
     self.builder.get_object('GuiInput').set_text("")
     self.builder.get_object('GuiInvProd').get_buffer().set_text("Product:\n")
     self.builder.get_object('GuiInvPrice').get_buffer().set_text("Price:\n")
-    self.builder.get_object('GuiTotal').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('GuiTotal').set_text(u"%s%.2f" % (self.amount, config.CURRENCY_SYMBOL))
     self.builder.get_object('GuiInput').set_sensitive(True)
     self.builder.get_object('GuiReset').set_sensitive(True)
     self.builder.get_object('GuiAccept').set_sensitive(True)
@@ -214,10 +211,10 @@ class KassaGui(object):
       self.dbase.SetSale(items[0], self.cred_id, self.is_member)
     if self.cred_card:
       self.InfoDialog(u"Transaction completed.\r\nYour card %s has been charged"
-                      u" \xa3%.2f. \r\nYour card has \xa3%.2f left." %
+                      u" " + config.CURRENCY_SYMBOL + u"%.2f. \r\nYour card has " + config.CURRENCY_SYMBOL + u"%.2f left." %
                       (self.cred_card, self.amount, newcredit),timeout=6)
     else:
-      self.InfoDialog(u"Transaction completed.\r\nPlease deposit \xa3%.2f in"
+      self.InfoDialog(u"Transaction completed.\r\nPlease deposit " + config.CURRENCY_SYMBOL + u"%.2f in"
                        u" the cash box." % self.amount, timeout=6)
     self.builder.get_object('GuiMode').set_label(u"Thank you, come again!"
         u"\n\u00A9 Apu Nahasapeemapetilon")
@@ -243,7 +240,7 @@ class KassaGui(object):
     dialog.show()
     self.builder.get_object('TopUpInfo').get_buffer().set_text(u"Please scan "
         "your creditcard...")
-    self.builder.get_object('TopUpAmount').set_text(u"\xa30.00")
+    self.builder.get_object('TopUpAmount').set_text( config.CURRENCY_SYMBOL + u"0.00")
     self.GuiReset_clicked_cb() # Make sure all vars are reset!
 
   def About_activate_cb(self, data=None):
@@ -281,7 +278,7 @@ class KassaGui(object):
           u"Please scan a card first!")
       return
     self.amount += 5
-    self.builder.get_object('TopUpAmount').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('TopUpAmount').set_text( config.CURRENCY_SYMBOL + u"%.2f" % self.amount)
 
   def TopUpAdd10_clicked_cb(self, data=None):
     """ The button to add 10 euro """
@@ -290,7 +287,7 @@ class KassaGui(object):
           u"Please scan a card first!")
       return
     self.amount += 10
-    self.builder.get_object('TopUpAmount').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('TopUpAmount').set_text(config.CURRENCY_SYMBOL + u"%.2f" % self.amount)
 
   def TopUpAdd20_clicked_cb(self, data=None):
     """ The button to add 20 euro """
@@ -299,7 +296,7 @@ class KassaGui(object):
           u"Please scan a card first!")
       return
     self.amount += 20
-    self.builder.get_object('TopUpAmount').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('TopUpAmount').set_text(config.CURRENCY_SYMBOL + u"%.2f" % self.amount)
 
   def TopUpAdd50_clicked_cb(self, data=None):
     """ The button to add 50 euro """
@@ -308,7 +305,7 @@ class KassaGui(object):
           u"Please scan a card first!")
       return
     self.amount += 50
-    self.builder.get_object('TopUpAmount').set_text(u"\xa3%.2f" % self.amount)
+    self.builder.get_object('TopUpAmount').set_text(config.CURRENCY_SYMBOL + u"%.2f" % self.amount)
 
   def TopUpOK_clicked_cb(self, data=None):
     """ The button commit the credit changes """
@@ -318,10 +315,10 @@ class KassaGui(object):
       return
     logging.debug("Card %r added %s credit.", self.cred_card, self.amount)
     self.builder.get_object('TopUpInfo').get_buffer().insert_at_cursor(
-        u"\nAdding \xa3%.2f to card %s...\n" % (self.amount, self.cred_card))
+        u"\nAdding " + config.CURRENCY_SYMBOL + u"%.2f to card %s...\n" % (self.amount, self.cred_card))
     self.dbase.UpdateCard(self.cred_id, self.amount)
-    self.InfoDialog(u"Please make sure you have deposited \xa3%.2f in the "
-                    u"cash box!\r\nYour cards (%s) credit is now \xa3%.2f." %
+    self.InfoDialog(u"Please make sure you have deposited " + config.CURRENCY_SYMBOL + u"%.2f in the "
+                    u"cash box!\r\nYour cards (%s) credit is now " + config.CURRENCY_SYMBOL + u"%.2f." %
                     (self.amount, self.cred_card, self.cred_left + self.amount),
                     timeout=6)
     self.GuiReset_clicked_cb()

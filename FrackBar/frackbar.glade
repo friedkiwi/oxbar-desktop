@@ -445,7 +445,7 @@ transaction.</property>
           <object class="GtkLabel" id="TopUpAmount">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">£0,00</property>
+            <property name="label" translatable="yes">0,00</property>
             <attributes>
               <attribute name="weight" value="ultraheavy"/>
               <attribute name="absolute-size" value="50000"/>
@@ -464,7 +464,7 @@ transaction.</property>
             <property name="homogeneous">True</property>
             <child>
               <object class="GtkButton" id="TopUpAdd5">
-                <property name="label" translatable="yes">£5</property>
+                <property name="label" translatable="yes">5</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -480,7 +480,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd10">
-                <property name="label" translatable="yes">£10</property>
+                <property name="label" translatable="yes">10</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -496,7 +496,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd20">
-                <property name="label" translatable="yes">£20</property>
+                <property name="label" translatable="yes">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
@@ -512,7 +512,7 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkButton" id="TopUpAdd50">
-                <property name="label" translatable="yes">£50</property>
+                <property name="label" translatable="yes">50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
