@@ -182,7 +182,7 @@ class KassaGui(object):
     self.builder.get_object('GuiInput').set_text("")
     self.builder.get_object('GuiInvProd').get_buffer().set_text("Product:\n")
     self.builder.get_object('GuiInvPrice').get_buffer().set_text("Price:\n")
-    self.builder.get_object('GuiTotal').set_text(u"%s%.2f" % (self.amount, config.CURRENCY_SYMBOL))
+    self.builder.get_object('GuiTotal').set_text(u"%s%.2f" % (config.CURRENCY_SYMBOL, self.amount))
     self.builder.get_object('GuiInput').set_sensitive(True)
     self.builder.get_object('GuiReset').set_sensitive(True)
     self.builder.get_object('GuiAccept').set_sensitive(True)
@@ -216,8 +216,7 @@ class KassaGui(object):
     else:
       self.InfoDialog(u"Transaction completed.\r\nPlease deposit " + config.CURRENCY_SYMBOL + u"%.2f in"
                        u" the cash box." % self.amount, timeout=6)
-    self.builder.get_object('GuiMode').set_label(u"Thank you, come again!"
-        u"\n\u00A9 Apu Nahasapeemapetilon")
+    self.builder.get_object('GuiMode').set_label(u"Thank you, come again!")
     self.builder.get_object('GuiInvProd').get_buffer().insert_at_cursor(
         u"\nSuccess!\n\nApplication will\nreset in 3s.")
     self.builder.get_object('GuiAccept').set_sensitive(False)
@@ -337,9 +336,8 @@ def FrackBar():
 
 
 if __name__ == '__main__':
-  LOGFILE = os.path.expanduser("~/.frackbar/frackbar.log")
-  LOGFORMAT = "%(asctime)-15s %(message)s"
-  logging.basicConfig(filename=LOGFILE, filemode='a', format=LOGFORMAT, 
+
+  logging.basicConfig(filename=config.LOGFILE, filemode='a', format=config.LOGFORMAT,
                       level=logging.INFO)
   logging.info("Application started!")
   FrackBar()
