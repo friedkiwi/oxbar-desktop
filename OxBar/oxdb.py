@@ -1,5 +1,5 @@
 #!/usr/bin/python2.6
-"""FrackBar Database backend module."""
+"""OxBar Database backend module."""
 __author__ = "Rudi Daemen <info@kratjebierhosting.nl>"
 __version__ = "1.0"
 
@@ -27,8 +27,8 @@ class FrackDb(object):
     if not os.path.exists(db_file):
       logging.info("Database not found, creating it...")
       with sqlite.Connection(db_file) as cursor:
-        cursor.executescript(file('frackbar.schema').read())
-        cursor.executescript(file('frackbar.data').read())
+        cursor.executescript(file('oxbar.schema').read())
+        cursor.executescript(file('oxbar.data').read())
 
   def GetProduct(self, barcode):
     """ method to get only the required product info from products """

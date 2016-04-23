@@ -1,12 +1,12 @@
 #!/usr/bin/python2.6
-"""FrackBar GUI backend for administration purposes."""
+"""OxBar GUI backend for administration purposes."""
 __author__ = "Rudi Daemen <info@kratjebierhosting.nl>"
 __version__ = "1.2"
 
 import datetime
 import os
 import gtk
-import frackdb
+import oxdb
 import threading
 import logging
 import config
@@ -22,13 +22,13 @@ class FrackMin(object):
     except ValueError:
       self.lastdaymonth = { 1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31,
            8: 31, 9: 30, 10: 31, 11: 30, 12: 31 }
-    self.dbase = frackdb.FrackDb()
+    self.dbase = oxdb.FrackDb()
     self.builder = gtk.Builder()
     self._StartGui()
 
   def _StartGui(self):
     self.builder.add_from_file(os.path.join(
-        os.path.dirname(__file__), 'frackmin.glade'))
+        os.path.dirname(__file__), 'oxmin.glade'))
     self.builder.connect_signals(self)
     dialog = self.builder.get_object('AdminGui')
     dialog.connect('delete-event', dialog.hide_on_delete)

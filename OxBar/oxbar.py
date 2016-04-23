@@ -1,5 +1,5 @@
 #!/usr/bin/python2.6
-"""FrackBar GUI frontend on the FrackDb (Sales)."""
+"""OxBar GUI frontend on the FrackDb (Sales)."""
 
 
 __original_author__ = "Rudi Daemen <info@kratjebierhosting.nl>"
@@ -10,8 +10,8 @@ __version__ = "1.3b"
 import time
 import os
 import gtk
-import frackdb
-import frackmin
+import oxdb
+import oxmin
 import threading
 import logging
 import config
@@ -27,14 +27,14 @@ class KassaGui(object):
     self.amount = 0
     self.cred_left = 0
     self.cred_id = ''
-    self.dbase = frackdb.FrackDb()
+    self.dbase = oxdb.FrackDb()
     self.builder = gtk.Builder()
     self._StartGui()
 
   def _StartGui(self):
     verstring = "OxBar Consumption Tracker GUI v%s" % __version__
     self.builder.add_from_file(os.path.join(
-        os.path.dirname(__file__), 'frackbar.glade'))
+        os.path.dirname(__file__), 'oxbar.glade'))
     self.builder.connect_signals(self)
     self.builder.get_object('KassaGui').show()
     self.builder.get_object('KassaGui').set_title(verstring)
@@ -230,7 +230,7 @@ class KassaGui(object):
   # Handling the items in the File and Help menu
   def StartAdmin_activate_cb(self, data=None):
     """ Start the FrackMin application and reset the KassaGui """
-    frackmin.FrackMin()
+    oxmin.FrackMin()
     self.GuiReset_clicked_cb()
 
   def CreditTopup_activate_cb(self, data=None):
