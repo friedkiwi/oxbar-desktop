@@ -74,10 +74,10 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
             <child>
               <object class="GtkButton" id="DialogClose">
                 <property name="label" translatable="yes">Close</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <signal name="clicked" handler="DialogClose_clicked_cb" swapped="no"/>
               </object>
               <packing>
@@ -119,37 +119,37 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
         <child>
           <object class="GtkButton" id="GuiAccept">
             <property name="label" translatable="yes">ACCEPT</property>
+            <property name="use_action_appearance">False</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Click here to finalize the
 transaction.</property>
-            <property name="use_action_appearance">False</property>
             <property name="focus_on_click">False</property>
             <signal name="clicked" handler="GuiAccept_clicked_cb" swapped="no"/>
           </object>
           <packing>
-            <property name="top_attach">7</property>
+            <property name="top_attach">8</property>
             <property name="bottom_attach">9</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="GuiReset">
             <property name="label" translatable="yes">RESET</property>
+            <property name="use_action_appearance">False</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Click here to reset the transaction</property>
-            <property name="use_action_appearance">False</property>
             <property name="focus_on_click">False</property>
             <signal name="clicked" handler="GuiReset_clicked_cb" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">1</property>
             <property name="right_attach">2</property>
-            <property name="top_attach">7</property>
+            <property name="top_attach">8</property>
             <property name="bottom_attach">9</property>
           </packing>
         </child>
@@ -279,9 +279,9 @@ transaction.</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkMenuItem" id="FileMenu">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
@@ -291,9 +291,9 @@ transaction.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="StartAdmin">
                         <property name="label">Admin functions...</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="image">image3</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="StartAdmin_activate_cb" swapped="no"/>
@@ -302,9 +302,9 @@ transaction.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="CreditTopup">
                         <property name="label">Add Credit...</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="image">image2</property>
                         <property name="use_stock">False</property>
                         <signal name="activate" handler="CreditTopup_activate_cb" swapped="no"/>
@@ -312,17 +312,17 @@ transaction.</property>
                     </child>
                     <child>
                       <object class="GtkSeparatorMenuItem" id="separatormenuitem1">
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="Quit">
                         <property name="label">gtk-quit</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="_Exit" swapped="no"/>
@@ -334,9 +334,9 @@ transaction.</property>
             </child>
             <child>
               <object class="GtkMenuItem" id="HelpMenu">
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
@@ -346,9 +346,9 @@ transaction.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="About">
                         <property name="label">gtk-about</property>
+                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="About_activate_cb" swapped="no"/>
@@ -361,6 +361,23 @@ transaction.</property>
           </object>
           <packing>
             <property name="right_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="GuiSelectItem">
+            <property name="label" translatable="yes">SELECT ITEM</property>
+            <property name="use_action_appearance">False</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="focus_on_click">False</property>
+            <signal name="clicked" handler="GuiSelectItem_click_cb" swapped="no"/>
+          </object>
+          <packing>
+            <property name="right_attach">2</property>
+            <property name="top_attach">7</property>
+            <property name="bottom_attach">8</property>
           </packing>
         </child>
       </object>
@@ -389,10 +406,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpOK">
                 <property name="label" translatable="yes">Submit</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpOK_clicked_cb" swapped="no"/>
               </object>
@@ -405,10 +422,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpCancel">
                 <property name="label" translatable="yes">Cancel</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpCancel_clicked_cb" swapped="no"/>
               </object>
@@ -465,10 +482,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpAdd5">
                 <property name="label" translatable="yes">5</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpAdd5_clicked_cb" swapped="no"/>
               </object>
@@ -481,10 +498,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpAdd10">
                 <property name="label" translatable="yes">10</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpAdd10_clicked_cb" swapped="no"/>
               </object>
@@ -497,10 +514,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpAdd20">
                 <property name="label" translatable="yes">20</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpAdd20_clicked_cb" swapped="no"/>
               </object>
@@ -513,10 +530,10 @@ transaction.</property>
             <child>
               <object class="GtkButton" id="TopUpAdd50">
                 <property name="label" translatable="yes">50</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="TopUpAdd50_clicked_cb" swapped="no"/>
               </object>
