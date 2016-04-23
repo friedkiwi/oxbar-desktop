@@ -11,3 +11,6 @@ ANONMEMCARD = 'OXMEMBER'
 NOTIFYTIME = 3
 LOGFILE = os.path.expanduser("~/.frackbar/frackmin.log")
 LOGFORMAT = "%(asctime)-15s %(message)s"
+
+# width of the "List Items" list, in items
+LIST_WIDTH = 6

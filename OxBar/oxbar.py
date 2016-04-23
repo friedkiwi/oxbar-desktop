@@ -204,8 +204,10 @@ class KassaGui(object):
         table_dimensions = int(math.ceil(math.sqrt(len(products_to_show))))
 
         selectionWindowTable = gtk.Table()
-
-        selectionWindowTable.resize(table_dimensions, table_dimensions)
+        if table_dimensions < config.LIST_WIDTH:
+            selectionWindowTable.resize(table_dimensions, table_dimensions)
+        else:
+            selectionWindowTable.resize(config.LIST_WIDTH, table_dimensions + int(table_dimensions / config.LIST_WIDTH))
 
         pos = 0
         for product in products_to_show:
@@ -214,7 +216,12 @@ class KassaGui(object):
             buttonLabel.set_padding(15,15)
             b.add(buttonLabel)
             b.connect('clicked', self.GuiItemButton_click_cb)
-            selectionWindowTable.attach(b, pos % table_dimensions , pos % table_dimensions  + 1, int(math.floor(pos / table_dimensions)), int(math.floor(pos / table_dimensions)) + 1 )
+
+            if table_dimensions < config.LIST_WIDTH:
+                selectionWindowTable.attach(b, pos % table_dimensions , pos % table_dimensions  + 1, int(math.floor(pos / table_dimensions)), int(math.floor(pos / table_dimensions)) + 1 )
+            else:
+                selectionWindowTable.attach(b, pos % config.LIST_WIDTH, pos % config.LIST_WIDTH + 1, int(math.floor(pos / config.LIST_WIDTH)), int(math.floor(pos / config.LIST_WIDTH)) + 1 )
+
             pos = pos + 1
 
         selectionWindow.add(selectionWindowTable)
