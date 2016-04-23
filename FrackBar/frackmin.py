@@ -9,6 +9,7 @@ import gtk
 import frackdb
 import threading
 import logging
+import frackbar
 
 class FrackMin(object):
   """ Opens the AdminGui window """
@@ -224,7 +225,7 @@ class FrackMin(object):
       self.builder.get_object('UpdateLbl4').hide()
       self.builder.get_object('UpdateIn4').hide()
       self.builder.get_object('UpdateLbl4').set_text('card')
-      self.builder.get_object('UpdateIn1').set_text('FCC-')
+      self.builder.get_object('UpdateIn1').set_text(frackbar.CCPREFIX + "-")
       self.builder.get_object('UpdateIn2').set_text('yes')
     dialog.show()
 
@@ -255,7 +256,7 @@ class FrackMin(object):
       self.InfoDialog(u"All input fields are required!\nPlease try again...",
                       error=True)
       return
-    if barcode in ('FRACKMEMBER', 'FCC', 'FCC-'):
+    if barcode in (frackbar.ANONMEMCARD, frackbar.CCPREFIX, frackbar.CCPREFIX + '-'):
       # These are the special codes, not allowed for products.
       self.InfoDialog(u"Barcode \"%s\" is not allowed.\nPlease choose a "
                       u"different barcode." % barcode, error=True)
@@ -272,7 +273,7 @@ class FrackMin(object):
     # Just a few more checks to make sure if the data is correct for cardmode.
     # For product mode we don't care any further about the first two input
     # fields as they contain a barcode and a name the user can choose.
-    if barcode.startswith("FCC-"):
+    if barcode.startswith(frackbar.CCPREFIX + '-'):
       #the frack creditcard prefix is found!
       if not mode == 'card':
         #but oh noes, it is not in cardmode!!!
