@@ -48,7 +48,7 @@ class FrackDb(object):
         """ method to get only the required product info from products """
         with self.connection as cursor:
             try:
-                return cursor.execute("""select * from `product`""")
+                return cursor.execute("""select * from `product` order by `name` asc""")
             except IndexError:
                 #        logging.info("No products found matching barcode \'%s\'", barcode)
                 return None
