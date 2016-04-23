@@ -214,8 +214,8 @@ class KassaGui(object):
                       u" " + config.CURRENCY_SYMBOL + u"%.2f. \r\nYour card has " + config.CURRENCY_SYMBOL + u"%.2f left." %
                       (self.cred_card, self.amount, newcredit),timeout=6)
     else:
-      self.InfoDialog(u"Transaction completed.\r\nPlease deposit " + config.CURRENCY_SYMBOL + u"%.2f in"
-                       u" the cash box." % self.amount, timeout=6)
+      self.InfoDialog(u"Transaction completed.\r\nPlease donate " + config.CURRENCY_SYMBOL + u"%.2f in"
+                       u" the fridge." % self.amount, timeout=6)
     self.builder.get_object('GuiMode').set_label(u"Thank you, come again!")
     self.builder.get_object('GuiInvProd').get_buffer().insert_at_cursor(
         u"\nSuccess!\n\nApplication will\nreset in 3s.")

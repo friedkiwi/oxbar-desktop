@@ -142,9 +142,9 @@ class FrackMin(object):
   def AdminSalesPrint(self, date=''):
     """ This prints the header of the sales overview """
     self.builder.get_object('AdminCol1').get_buffer().set_text(
-        u"\nID\n")
+        u"\nID\n \n")
     self.builder.get_object('AdminCol2').get_buffer().set_text(
-        u"\nName\n")
+        u"\nName\n \n")
     self.builder.get_object('AdminCol3').get_buffer().set_text(
         u"Guest\nprice\n")
     self.builder.get_object('AdminCol4').get_buffer().set_text(

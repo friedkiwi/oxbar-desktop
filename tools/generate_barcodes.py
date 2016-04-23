@@ -1,5 +1,5 @@
 #!/usr/bin/python
-""" Barcode generator for the FrackBar database """
+""" Barcode generator for the OxBar database """
 __author__ = "Rudi Daemen <info@kratjebierhosting.nl>"
 __version__ = "0.1"
 
